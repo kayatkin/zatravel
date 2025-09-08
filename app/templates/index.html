@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="bi bi-search-heart"></i> Поиск авиабилетов</h4>
+            </div>
+            <div class="card-body">
+                <form id="searchForm">
+                    <div class="row g-3">
+                        <!-- Поле Откуда -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Откуда *</label>
+                            <input type="text" class="form-control" id="originInput" 
+                                   placeholder="Город или аэропорт" required autocomplete="off">
+                            <div class="form-text">Например: Москва, MOW или SVO</div>
+                            <div id="originSuggestions" class="dropdown-menu"></div>
+                        </div>
+
+                        <!-- Поле Куда -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Куда *</label>
+                            <input type="text" class="form-control" id="destinationInput" 
+                                   placeholder="Город или аэропорт" required autocomplete="off">
+                            <div class="form-text">Например: Лондон, LON или LHR</div>
+                            <div id="destinationSuggestions" class="dropdown-menu"></div>
+                        </div>
+
+                        <!-- Дата вылета -->
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Дата вылета *</label>
+                            <input type="date" class="form-control" id="departureDate" required>
+                        </div>
+
+                        <!-- Дата возврата -->
+                        <div class="col-md-4">
+                            <label class="form-label">Дата возврата</label>
+                            <input type="date" class="form-control" id="returnDate">
+                            <div class="form-text">Оставьте пустым для билета в одну сторону</div>
+                        </div>
+
+                        <!-- Количество пассажиров -->
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Пассажиры</label>
+                            <select class="form-select" id="passengers">
+                                <option value="1">1 пассажир</option>
+                                <option value="2">2 пассажира</option>
+                                <option value="3">3 пассажира</option>
+                                <option value="4">4 пассажира</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Кнопка поиска -->
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="bi bi-search"></i> Найти билеты
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Блок результатов -->
+        <div id="results" class="mt-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Результаты поиска</h5>
+                </div>
+                <div class="card-body">
+                    <div id="loading" class="text-center py-4" style="display: none;">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Загрузка...</span>
+                        </div>
+                        <p class="mt-2">Ищем лучшие предложения...</p>
+                    </div>
+                    <div id="flightResults"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<!-- ВСЕ СТИЛИ И СКРИПТЫ ПЕРЕНЕСЕНЫ В script.js -->
+{% endblock %}
